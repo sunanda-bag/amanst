@@ -1,0 +1,35 @@
+{% load static %}
+{% extends "jobs.html" %}
+{% block content1 %}
+<script src="jquery.min.js"></script>
+<script src="{% static 'jobs/js/jobs-filter.js' %}"></script>
+<script language="JavaScript" 
+    src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js">
+  </script>
+			<h3 class="mb-4 border-bottom pb-1">Filters</h3>
+			<!-- Filter 1 -->
+			<div class="card mb-4">
+				<h6 class="card-header">Colors</h6>
+				<div class="list-group list-group-flush">
+					{% for color in colors %}
+					<li class="list-group-item">
+						<input class="filter-checkbox" data-filter="color" id="role-{{forloop.counter}}" value="{{role.0}}" name="role-{{forloop.counter}}" type="checkbox" />&nbsp;
+						<button class="btn" style="background-color: {{color.color__color_code}}; margin-top: -5px;"></button>
+					</li>
+					{% endfor %}
+				</div>
+			</div>
+			<!-- Filter 2 -->
+			<div class="card mb-4">
+				<h6 class="card-header">Categories</h6>
+				<div class="list-group list-group-flush">
+					{% for cat in cats %}
+					<li class="list-group-item">
+						<input class="filter-checkbox" data-filter="category" id="exampleCheck2" value="{{ item.0 }}" type="checkbox" />&nbsp;
+						{{cat.category__title}}
+					</li>
+					{% endfor %}
+				</div>
+			</div>
+			
+{% endblock %}

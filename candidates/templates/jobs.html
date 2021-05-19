@@ -1,0 +1,993 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<style>
+  /* Taken from https://codepen.io/jonnitto/project/editor/XRPjxx */
+
+  .background {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  .form-btn,
+  .form-btn-cancel,
+  .form-btn-error {
+    background: transparent;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 5px 24px;
+    margin-top: 2.25rem;
+    position: relative;
+    z-index: 0;
+    transition: transform 0.28s ease;
+    will-change: transform;
+  }
+
+  .form-btn::before,
+  .form-btn::after,
+  .form-btn-cancel::before,
+  .form-btn-cancel::after,
+  .form-btn-error::before,
+  .form-btn-error::after {
+    position: absolute;
+    content: "";
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+  }
+
+  .form-btn::before,
+  .form-btn-cancel::before,
+  .form-btn-error::before {
+    background: #337ab7;
+    z-index: -2;
+  }
+
+  .form-btn::after,
+  .form-btn-cancel::after,
+  .form-btn-error::after {
+    background: #000;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.28s ease;
+    will-change: opacity;
+  }
+
+  .form-btn:focus,
+  .form-btn-cancel:focus,
+  .form-btn-error:focus {
+    outline: none;
+  }
+
+  .form-btn:focus::after,
+  .form-btn:hover::after,
+  .form-btn-cancel:focus::after,
+  .form-btn-cancel:hover::after,
+  .form-btn-error:focus::after,
+  .form-btn-error:hover::after {
+    opacity: 0.3;
+  }
+
+  .form-btn:active,
+  .form-btn-cancel:active,
+  .form-btn-error:active {
+    transform: translateY(1px);
+  }
+
+  .form-btn-error::before {
+    background: #d9534f;
+  }
+
+  .form-btn-cancel {
+    transition: color 0.28s ease, transform 0.28s ease;
+    color: #b52b27;
+    border-color: currentColor;
+    will-change: color, transform;
+  }
+
+  .form-btn-cancel.-nooutline {
+    border-color: transparent;
+  }
+
+  .form-btn-cancel::before {
+    background: #b52b27;
+    opacity: 0;
+    transition: opacity 0.28s ease;
+    will-change: opacity;
+  }
+
+  .form-btn-cancel::after {
+    display: none;
+  }
+
+  .form-btn-cancel:focus,
+  .form-btn-cancel:hover {
+    color: #fff;
+  }
+
+  .form-btn-cancel:focus::before,
+  .form-btn-cancel:hover::before {
+    opacity: 1;
+  }
+
+  .form-btn-block {
+    display: block;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .form-checkbox,
+  .form-radio {
+    position: relative;
+    margin-top: 2.25rem;
+    margin-bottom: 2.25rem;
+    text-align: left;
+  }
+
+  .form-checkbox-inline .form-checkbox-label,
+  .form-radio-inline .form-radio-label {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+
+  .form-checkbox-legend,
+  .form-radio-legend {
+    margin: 0 0 0.125rem 0;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  .form-checkbox-label,
+  .form-radio-label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 1.5rem;
+    text-align: left;
+    color: #333;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-checkbox-label:hover i,
+  .form-radio-label:hover i {
+    color: #337ab7;
+  }
+
+  .form-checkbox-label span,
+  .form-radio-label span {
+    display: block;
+  }
+
+  .form-checkbox-label input,
+  .form-radio-label input {
+    width: auto;
+    opacity: 0.0001;
+    position: absolute;
+    left: 0.25rem;
+    top: 0.25rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .form-checkbox-button {
+    position: absolute;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: block;
+    color: #999;
+    left: 0;
+    top: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+    z-index: 0;
+    border: 0.125rem solid currentColor;
+    border-radius: 0.0625rem;
+    transition: color 0.28s ease;
+    will-change: color;
+  }
+
+  .form-checkbox-button::before,
+  .form-checkbox-button::after {
+    position: absolute;
+    height: 0;
+    width: 0.2rem;
+    background-color: #337ab7;
+    display: block;
+    transform-origin: left top;
+    border-radius: 0.25rem;
+    content: "";
+    transition: opacity 0.28s ease, height 0s linear 0.28s;
+    opacity: 0;
+    will-change: opacity, height;
+  }
+
+  .form-checkbox-button::before {
+    top: 0.65rem;
+    left: 0.38rem;
+    transform: rotate(-135deg);
+    box-shadow: 0 0 0 0.0625rem #fff;
+  }
+
+  .form-checkbox-button::after {
+    top: 0.3rem;
+    left: 0;
+    transform: rotate(-45deg);
+  }
+
+  .form-checkbox-field:checked~.form-checkbox-button {
+    color: #337ab7;
+  }
+
+  .form-checkbox-field:checked~.form-checkbox-button::after,
+  .form-checkbox-field:checked~.form-checkbox-button::before {
+    opacity: 1;
+    transition: height 0.28s ease;
+  }
+
+  .form-checkbox-field:checked~.form-checkbox-button::after {
+    height: 0.5rem;
+  }
+
+  .form-checkbox-field:checked~.form-checkbox-button::before {
+    height: 1.2rem;
+    transition-delay: 0.28s;
+  }
+
+  .form-radio-button {
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+    display: block;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #999;
+  }
+
+  .form-radio-button::before,
+  .form-radio-button::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.28s ease, color 0.28s ease;
+    border-radius: 50%;
+    border: 0.125rem solid currentColor;
+    will-change: transform, color;
+  }
+
+  .form-radio-button::after {
+    transform: scale(0);
+    background-color: #337ab7;
+    border-color: #337ab7;
+  }
+
+  .form-radio-field:checked~.form-radio-button::after {
+    transform: scale(0.5);
+  }
+
+  .form-radio-field:checked~.form-radio-button::before {
+    color: #337ab7;
+  }
+
+  .form-has-error .form-checkbox-button,
+  .form-has-error .form-radio-button {
+    color: #d9534f;
+  }
+
+  .form-card {
+    border-radius: 2px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.56s cubic-bezier(0.25, 0.8, 0.25, 1);
+    max-width: 500px;
+    padding: 0;
+    margin: 50px auto;
+  }
+
+  .form-card:hover,
+  .form-card:focus {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+
+  .form-card:focus-within {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+
+  .form-actions {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 2.25rem;
+  }
+
+  .form-actions .form-btn-cancel {
+    -ms-flex-order: -1;
+    order: -1;
+  }
+
+  .form-actions::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: #999;
+    opacity: 0.3;
+  }
+
+  .form-actions>* {
+    -ms-flex: 1;
+    flex: 1;
+    margin-top: 0;
+  }
+
+  .form-fieldset {
+    padding: 30px;
+    border: 0;
+  }
+
+  .form-fieldset+.form-fieldset {
+    margin-top: 15px;
+  }
+
+  .form-legend {
+    padding: 1em 0 0;
+    margin: 0 0 -0.5em;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .form-legend+p {
+    margin-top: 1rem;
+  }
+
+  .form-element {
+    position: relative;
+    margin-top: 2.25rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .form-element-hint {
+    font-weight: 400;
+    font-size: 0.6875rem;
+    color: #a6a6a6;
+    display: block;
+  }
+
+  .form-element-bar {
+    position: relative;
+    height: 1px;
+    background: #999;
+    display: block;
+  }
+
+  .form-element-bar::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #337ab7;
+    height: 2px;
+    display: block;
+    transform: rotateY(90deg);
+    transition: transform 0.28s ease;
+    will-change: transform;
+  }
+
+  .form-element-label {
+    position: absolute;
+    top: 0.75rem;
+    line-height: 1.5rem;
+    pointer-events: none;
+    padding-left: 0.125rem;
+    z-index: 1;
+    font-size: 1rem;
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    color: #a6a6a6;
+    transform: translateY(-50%);
+    transform-origin: left center;
+    transition: transform 0.28s ease, color 0.28s linear, opacity 0.28s linear;
+    will-change: transform, color, opacity;
+  }
+
+  .form-element-field {
+    outline: none;
+    height: 1.5rem;
+    display: block;
+    background: none;
+    padding: 0.125rem 0.125rem 0.0625rem;
+    font-size: 1rem;
+    border: 0 solid transparent;
+    line-height: 1.5;
+    width: 100%;
+    color: #333;
+    box-shadow: none;
+    opacity: 0.001;
+    transition: opacity 0.28s ease;
+    will-change: opacity;
+
+  }
+
+
+  .form-element-field:-ms-input-placeholder {
+    color: #a6a6a6;
+    transform: scale(0.9);
+    transform-origin: left top;
+  }
+
+  .form-element-field::placeholder {
+    color: #a6a6a6;
+    transform: scale(0.9);
+    transform-origin: left top;
+  }
+
+  .form-element-field:focus~.form-element-bar::after {
+    transform: rotateY(0deg);
+  }
+
+  .form-element-field:focus~.form-element-label {
+    color: #337ab7;
+  }
+
+  .form-element-field.-hasvalue,
+  .form-element-field:focus {
+    opacity: 1;
+  }
+
+  .form-element-field.-hasvalue~.form-element-label,
+  .form-element-field:focus~.form-element-label {
+    transform: translateY(-100%) translateY(-0.5em) translateY(-2px) scale(0.9);
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  .form-has-error .form-element-label.form-element-label,
+  .form-has-error .form-element-hint {
+    color: #d9534f;
+  }
+
+  .form-has-error .form-element-bar,
+  .form-has-error .form-element-bar::after {
+    background: #d9534f;
+  }
+
+  .form-is-success .form-element-label.form-element-label,
+  .form-is-success .form-element-hint {
+    color: #259337;
+  }
+
+  .form-is-success .form-element-bar::after {
+    background: #259337;
+  }
+
+  input.form-element-field:not(:placeholder-shown),
+  textarea.form-element-field:not(:placeholder-shown) {
+    opacity: 1;
+  }
+
+  input.form-element-field:not(:placeholder-shown)~.form-element-label,
+  textarea.form-element-field:not(:placeholder-shown)~.form-element-label {
+    transform: translateY(-100%) translateY(-0.5em) translateY(-2px) scale(0.9);
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  textarea.form-element-field {
+    height: auto;
+    min-height: 3rem;
+  }
+
+  select.form-element-field {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .form-select-placeholder {
+    color: #a6a6a6;
+    display: none;
+  }
+
+  .form-select .form-element-bar::before {
+    content: "";
+    position: absolute;
+    height: 0.5em;
+    width: 0.5em;
+    border-bottom: 1px solid #999;
+    border-right: 1px solid #999;
+    display: block;
+    right: 0.5em;
+    bottom: 0;
+    transition: transform 0.28s ease;
+    transform: translateY(-100%) rotateX(0deg) rotate(45deg);
+    will-change: transform;
+  }
+
+  .form-select select:focus~.form-element-bar::before {
+    transform: translateY(-50%) rotateX(180deg) rotate(45deg);
+  }
+
+  .form-element-field[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  .form-element-field[type="number"]::-webkit-outer-spin-button,
+  .form-element-field[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .css-17wzi6 {
+
+    color: #d8130c;
+    font-size: 16px;
+    top: 1px;
+    font-weight: 400;
+    padding-left: 2px;
+    text-decoration: unset;
+
+  }
+</style>
+
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #474e5d;
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+ 
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
+}
+  #customers {
+    border-collapse: collapse;
+    width: 100%;
+
+
+  }
+
+  #filter {
+    border-collapse: collapse;
+    align: left;
+
+  }
+
+  #customers td,
+  #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  #customers tr:hover {
+    background-color: #ddd;
+  }
+
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #212cc5;
+    color: white;
+  }
+
+  .button {
+
+    background: rgb(93, 153, 153);
+    padding: 10px 15px;
+    color: rgb(253, 253, 253);
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: 10px;
+    border-radius: 5px;
+    box-shadow: darkgrey;
+    margin-top: 25px;
+    text-decoration: none;
+    transition: 0.4s;
+
+  }
+</style>
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-2 col-lg-2">
+      <!-- <script type="text/javascript" src="{% static 'jobs/js/job-filter.js' %}"></script>
+      <script src="{% static 'jobs/js/jquery.min.js' %}"></script>
+      <script language="JavaScript" 
+      src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js">
+      </script> -->
+      <br>
+     
+      <h4 class="mb-4 border-bottom pb-1">Filters</h4>
+      <!-- Filter 1 -->
+      <div class="card mb-4">
+        <h6 class="card-header">Role</h6>
+        <div class="list-group list-group-flush" style="font-size:small;">
+          {% for role in roles %}
+          <li class="list-group-item">
+            <input class="filter-checkbox checked" data-filter="role" value="{{role.id}}"
+               type="checkbox" />&nbsp;
+            {{role}}
+          </li>
+          {% endfor %}
+        </div>
+      </div>
+      <br>
+      <!-- Filter 2 -->
+      <div class="card mb-4">
+        <h6 class="card-header">Location</h6>
+        <div class="list-group list-group-flush" style="font-size: small;">
+          {% for location in locations %}
+          <li class="list-group-item">
+            <input class="filter-checkbox checked" data-filter="location"  value="{{location.id}}"
+              type="checkbox" />&nbsp;
+            {{ location }}
+          </li>
+          {% endfor %}
+        </div>
+      </div>
+      <!-- left table section  -->
+
+      <!-- <form method="GET" action="/careers/">
+        <div class="left-side">
+          <h3 class="agileits-sear-head">By Role</h3>
+          <ul>
+            {% for role in Role_choices %}
+            <li>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="role-{{forloop.counter}}" value="{{role.0}}" name="role-{{forloop.counter}}">
+                <label class="form-check-label" for="role-{{forloop.counter}}">{{role.0}}</label>
+              </div>
+
+            </li>
+            {% endfor %}
+          </ul>
+
+          <h3 class="agileits-sear-head">By Location</h3>
+          <ul>
+            {% for item in Location_choices %}
+            <li>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck2" value="{{ item.0 }}">
+                <label class="form-check-label" for="exampleCheck2">{{ item.0 }}</label>
+              </div>
+
+            </li>
+
+            {% endfor %}
+          </ul>
+        
+        </div>
+
+      </form> -->
+
+    </div>
+
+{% if name %}
+<h5>YOUR APPLICATION HAS BEEN SUBMITED SUCCESSFULLY</h5>
+{% endif %}
+    <div class="col-md-10 col-lg-10" id=jobs>
+      <br>
+      <br>
+      <p class="ajaxLoader">Loading...</p>
+      
+      <!-- right table section  -->
+      <table id="customers" ;align="center">
+        <tr>
+          <th>Req_Id</th>
+          <th>Job Title</th>
+          <th>Role</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Submission Deadline</th>
+          <th>Location</th>
+          <th>No of Openings</th>
+          <th>Apply Now</th>
+        </tr>
+        <p class="ajaxLoader"></p>
+        {% for item in job_list %}
+        <tr>
+          <td>
+            <div>
+              <a href="{{item.id}}">
+                {{ item.Req_Id }}
+              </a>
+            </div>
+          </td>
+          <td>{{ item.Job_title }}</td>
+          <td>{{ item.role }}</td>
+          <td>{{ item.Start_date }}</td>
+          <td>{{ item.End_date }}</td>
+          <td>{{ item.Submission_deadline}}</td>
+          <td>{{ item.location }}</td>
+          <td>{{ item.No_Openings}}</td>
+          <td>
+            <!-- <div class="window">
+              <a href="http://127.0.0.1:8000/apply/" class="button" target="popup"
+                onclick="window.open('http://127.0.0.1:8000/apply/','popup','width=600,height=600'); return false;">
+                Click here
+              </a>
+            </div> -->
+            <div class="window">
+              <button class="button btn btn-primary mx-4" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">APPLY NOW </button>
+              <div id="id01" class="modal">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <form class="modal-content" action="/careers/" enctype="multipart/form-data" method="POST">
+                  <div class="container">
+                    <div style="text-align: center;"><h1>APPLICATION FORM</h1> </div>
+                    
+                      {% csrf_token %}
+                      <fieldset class="form-fieldset">
+                        <div class="form-element form-input">
+                          <input id="field-omv6eo-metm0n-5j55wv-w3wbws-6nm2b9" name="Name" class="form-element-field"
+                            placeholder="" type="input" required>
+                          <div class="form-element-bar"></div>
+                          <label class="form-element-label" for="field-omv6eo-metm0n-5j55wv-w3wbws-6nm2b9">Name
+                            <abbr title="required" class="css-17wzi6">*</abbr>
+                          </label>
+                        </div>
+                  
+                        <div class="form-element form-input">
+                          <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" name="Email_id" class="form-element-field" type="email" />
+                          <div class="form-element-bar"></div>
+                          <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Email id</label>
+                        </div>
+                  
+                        <div class="form-element form-input">
+                          <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" name="Years_of_Experience" class="form-element-field"
+                            type="number" />
+                          <div class="form-element-bar"></div>
+                          <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Years of Experience</label>
+                        </div>
+                  
+                        <div class="form-element form-input">
+                          <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" name="Linkedin_Profile" class="form-element-field"
+                            type="link" />
+                          <div class="form-element-bar"></div>
+                          <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Linkedin Profile</label>
+                        </div>
+                  
+                        <div class="form-element form-input">
+                          <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" name="Expected_hourly_rate" class="form-element-field"
+                            type="number" />
+                          <div class="form-element-bar"></div>
+                          <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Desired Hour Rate</label>
+                        </div>
+                  
+                        <div class="form-element form-input">
+                          <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" accept=".docx, .doc, .pdf" name="Resume"
+                            class="form-element-field" type="file" required>
+                          <div class="form-element-bar"></div>
+                          <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Upload Resume
+                            <abbr title="required" class="css-17wzi6">*</abbr>
+                          </label>
+                        </div>
+                  
+                        <table style="border: 3px solid black">
+                          <tr>
+                            <td>
+                              CAPTCHA
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <!-- <canvas id="myCanvas" width="250" height="50" style="background-color: rgb(255, 255, 255);">{{cap}}</canvas> -->
+                              <script src='https://www.google.com/recaptcha/api.js'></script>
+                              <div class="g-recaptcha" data-sitekey="6LeQsNsaAAAAADWnv46a6uucTtiGCHxzYFGX-6Ud"></div>
+                            </td>
+                           </table>
+                  
+                      </fieldset>
+                      </div>
+                      <div class="clearfix">
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                      <button type="submit" class="signupbtn">Submit</button>
+                      </div>
+                    
+                  </div>
+                </form>
+              </div>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+     
+    </div>
+  </div>
+</div>
+
+<!-- modal body -->
+
+<script type="text/javascript">
+  function VerifyUploadSizeIsOK() {
+   
+    var UploadFieldID = "file-upload";
+    var MaxSizeInBytes = 2097152;
+    var fld = document.getElementById(UploadFieldID);
+    if (fld.files && fld.files.length == 1 && fld.files[0].size > MaxSizeInBytes) {
+      alert("The file size must be no more than " + parseInt(MaxSizeInBytes / 1024 / 1024) + "MB");
+      return false;
+    }
+    return true;
+  } // function VerifyUploadSizeIsOK()
+</script>
+<script>
+  var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+  ctx.font = "30px comic sans MS";
+  ctx.fillStyle = "red";
+  ctx.textAlign = "center";
+  ctx.fillText("{{cap}}", canvas.width / 2, canvas.height / 2);
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+  crossorigin="anonymous"></script>
+
+
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+<div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="background-image: url(/static/jobs/images/about_page.jpg);">
+
+        <iframe src="/apply" width="100%" height="800" style="border:1px solid black;"></iframe>
+      </div>
+      <!-- <div class="modal-footer">
+        <button  class="btn btn-secondary" data-dismiss="modal" onclick="return VerifyUploadSizeIsOK()" type="submit">Reset</button>
+        <button class="btn btn-primary" type="reset">Submit</button>
+      </div> -->
+    </div>
+  </div>
+
+</div>
+{% endblock %}

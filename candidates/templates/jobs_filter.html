@@ -1,0 +1,45 @@
+<table id="customers" ;align="center">
+  <tr>
+    <th>Req_Id</th>
+    <th>Job Title</th>
+    <th>Role</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Submission Deadline</th>
+    <th>Location</th>
+    <th>No of Openings</th>
+    <th>Apply Now</th>
+  </tr>
+  <p class="ajaxLoader"></p>
+  {% for item in data %}
+  <tr>
+    <td>
+      <div>
+        <a href="{{item.id}}">
+          {{ item.Req_Id }}
+        </a>
+      </div>
+    </td>
+    <td>{{ item.Job_title }}</td>
+    <td>{{ item.role }}</td>
+    <td>{{ item.Start_date }}</td>
+    <td>{{ item.End_date }}</td>
+    <td>{{ item.Submission_deadline}}</td>
+    <td>{{ item.location }}</td>
+    <td>{{ item.No_Openings}}</td>
+    <td>
+      <!-- <div class="window">
+        <a href="http://127.0.0.1:8000/apply/" class="button" target="popup"
+          onclick="window.open('http://127.0.0.1:8000/apply/','popup','width=600,height=600'); return false;">
+          Click here
+        </a>
+      </div> -->
+      <div class="window">
+        <a href="/apply" class="button btn btn-primary mx-4" data-toggle="modal" data-target="#applyModal">
+          APPLY NOW
+        </a>
+      </div>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
