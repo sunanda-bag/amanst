@@ -8423,7 +8423,7 @@ h1, h2, h3, h4, h5,
   .hero-wrap.hero-wrap-2 {
     height: 600px; }
     .hero-wrap.hero-wrap-2 .overlay {
-      height: 300px;
+      height: 600px;
       width: 100%;
       background: #212cc5;
       opacity: .6; }

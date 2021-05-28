@@ -12,7 +12,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+
+
 import django_heroku
+import dj_database_url
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,12 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3z)$tu_bt2)a%=8j$-wzp^0kv5+)(^r26+*79$_qsgiaifz*%('
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['amanst.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -50,6 +55,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -134,9 +141,11 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
+
 CRISPY_TEMPLATE_PACK= 'bootstrap4'
 MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
+
 
 os.makedirs(STATIC_ROOT, exist_ok=True)
 
@@ -166,13 +175,17 @@ CKEDITOR_CONFIGS = {
 }
 
 ###################################
-# Email settings
-EMAIL_HOST='smtp.gmail.com'
-EMAIL_PORT=587
-EMAIL_HOST_USER='testerwebsite007@gmail.com'
-EMAIL_HOST_PASSWORD='testing321'
-EMAIL_USE_TLS=True
+
+# email 
+EMAIL_HOST = config('EMAIL_HOST', default='localhost')
+EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='localhost')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False, cast=bool)
 
 RECAPTCHA_PUBLIC_KEY = '6LeQsNsaAAAAADWnv46a6uucTtiGCHxzYFGX-6Ud'
 RECAPTCHA_PRIVATE_KEY = '6LeQsNsaAAAAAH4ckMnBLNWMWWnBNbWMAGqJvERR'
 RECAPTCHA_USE_SSL = True
+
+
+django_heroku.settings(locals())
