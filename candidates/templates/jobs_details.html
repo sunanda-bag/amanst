@@ -99,42 +99,50 @@
 	<br>
 	<br>
 	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
-				<h5> <strong> Requisition Id: </strong> {{jobs_1.Req_Id}}</h5>
-			</div>
-			<div class="col-md-6">
-				<h5> <strong>Title: </strong> {{jobs_1.Job_title}} </h5>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<h5> <strong> Role: </strong>{{jobs_1.role}}</h5>
-			</div>
-			<div class="col-md-6">
-				<h5> <strong>Submission Deadline : </strong>{{jobs_1.Submission_deadline}} </h5>
-			</div>
-		</div>
 
-		<div class="row">
-			<div class="col-md-6">
-				<h5> <strong> Start Date: </strong>{{jobs_1.Start_date}}</h5>
-			</div>
-			<div class="col-md-6">
-				<h5> <strong>End Date: </strong>{{jobs_1.End_date}} </h5>
-			</div>
-		</div>
 
-		<div class="row">
-			<div class="col-md-6">
-				<h5> <strong> Location: </strong>{{jobs_1.location}}</h5>
-			</div>
-			<div class="col-md-6">
-				<h5> <strong>#Candidates: </strong>{{jobs_1.No_Openings}} </h5>
-			</div>
-		</div>
-		<h5> <strong> Job Description: </strong> </h5>
-		<h6>{{jobs_1.Description|safe}}</h6>
+
+		<table class="table table-borderless" style="font-size: 1.2rem;">
+			
+			<tbody>
+			  <tr>
+				<th scope="row">Requisition Id: </th>
+				<td>{{jobs_1.Req_Id}}</td>
+				<th scope="row">Title:</th>
+				<td>{{jobs_1.Job_title}}</td>
+			  </tr>
+			  <tr>
+				<th scope="row">Role: </th>
+				<td>{{jobs_1.role}}</td>
+				<th scope="row">Submission Deadline: </th>
+				<td>{{jobs_1.Submission_deadline}} </td>
+			  </tr>
+			 
+			  <tr>
+				<th scope="row">Start Date: </th>
+				<td>{{jobs_1.Start_date}}</td>
+				<th scope="row">End Date: </th>
+				<td>{{jobs_1.End_date}}</td>
+			  </tr>
+			 
+			  <tr>
+				<th scope="row">Location: </th>
+				<td>{{jobs_1.location}}</td>
+				<th scope="row">#Candidates: </th>
+				<td>{{jobs_1.No_Openings}}</td>
+			  </tr>
+			  	
+			  <tr>
+				<th scope="row">Job Description: </th>
+			  </tr>
+			  <tr>
+				  <td>
+					{{jobs_1.Description|safe}}
+				  </td>
+			  </tr>
+			</tbody>
+		  </table>
+
 		<br>
 
 		<div class="row">
