@@ -18,7 +18,7 @@ body, .wb_sbg { min-width: 320px; min-height: 1790px; }
 #wb_element_instance0 .btn-collapser > .icon-bar { background-color: #ffffff; }
 #wb_element_instance0 .btn-collapser:hover { background-color: #ffffff; border-color: #000000; }
 #wb_element_instance0 .btn-collapser:hover > .icon-bar { background-color: #000000; }
-#wb_element_instance0 { top: 100px; left: 26px; min-width: 280px; width: 280px; min-height: 30px; height: 30px; display: block; z-index: 846; }
+#wb_element_instance0 { top: 32px; left: auto; min-width: 100px; width: 175px; min-height: 30px; height: 30px; display: block; z-index: 846; right: 4%;}
 #wb_element_instance0 ul { background: #122059 none repeat left top; border: 1px none #000000; }
 #wb_element_instance0 > ul { display: none; }
 #wb_element_instance0.collapse-expanded > ul { display: block; float: none; height: auto; overflow: hidden; overflow-y: auto; }
@@ -35,9 +35,9 @@ body, .wb_sbg { min-width: 320px; min-height: 1790px; }
 #wb_element_instance0:not(.collapse-expanded) .vmenu ul.open-left,#wb_element_instance0:not(.collapse-expanded) .hmenu ul.open-left { left: auto; right: 100%; }
 #wb_element_instance0:not(.collapse-expanded) .hmenu > li > ul.open-left { left: auto; right: 0; }
 #wb_element_instance1 p:last-child { margin-bottom: 0; }
-#wb_element_instance1 { opacity: 1; top: 39px; left: 10px; min-width: 280px; width: 280px; min-height: 31px; height: 31px; display: block; z-index: 6949; }
+#wb_element_instance1 { opacity: 1; top: 39px; left: 4%; min-width: 280px; width: 280px; min-height: 31px; height: 31px; display: block; z-index: 6949; }
 #wb_element_instance2 p:last-child { margin-bottom: 0; }
-#wb_element_instance2 { opacity: 1; top: 80px; left: 0px; min-width: 320px; width: 320px; min-height: 24px; height: 24px; display: block; z-index: 6950; }
+#wb_element_instance2 { opacity: 1; top: 80px; left: 4%; min-width: 320px; width: 320px; min-height: 24px; height: 24px; display: block; z-index: 6950; }
 #wb_element_instance3 { top: 0px; left: 0; right: 0; min-height: 140px; height: 140px; display: block; z-index: 467; }
 #wb_element_instance3 > .wb_shp { display: block; background-color: #122059; border: 5px none #c0c0c0; border-radius: 0px 0px 0px 0px; -moz-border-radius: 0px 0px 0px 0px; -webkit-border-radius: 0px 0px 0px 0px; width: 100%; height: 140px; }
 
