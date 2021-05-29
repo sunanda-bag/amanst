@@ -489,13 +489,7 @@ body[data-landing-page] #wb_main .wb_page { display: none; }
 
 .wb_footer { padding-bottom: 20px; }
 
-i.icon-wb-logo {
-	background-image: url("../img/icon-logo.png") !important;
-	background-position: 0px 0px;
-	width: 22px; height: 22px; margin: -3px 0px 0px 0px;
-	vertical-align: middle;
-	display: inline-block;
-}
+
 
 .wb-combobox-controll input	{ cursor: pointer; }
 .wb-combobox-controll ul	{ overflow-y: auto; max-height: 320px; }
@@ -517,13 +511,7 @@ i.icon-wb-logo {
 	line-height:1em*/
 }
 
-[class^="ico-lang"],
-[class*=" ico-lang"] {
-	background: url("../img/flags_matrix.png") no-repeat;
-	width: 18px; height: 12px; display: block; display: inline-block;
-	padding: 0px; margin: 0px; border: none; font-size: 1px; line-height: 1px;
-	overflow: hidden;
-}
+
 span.ico-lang-us, i.ico-lang-us { background-position: -378px -228px; }
 span.ico-lang-uk, i.ico-lang-uk { background-position: -378px -132px; }
 span.ico-lang-lt, i.ico-lang-lt { background-position: -216px -240px; }
