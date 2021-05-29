@@ -8,9 +8,7 @@
 #wb_footer { height: 90px; }
 #wb_footer > .wb_cont_bg { background-color: transparent; }
 #wb_footer > .wb_cont_bg:before { background: transparent none repeat-x scroll left top; background-size: auto auto; }
-html { scroll-behavior: smooth; }
-body { background-color: #ffffff; }
-body.site:before { background: transparent url("../gallery_gen/4f4ad3adbefa8c8944d863c8214f4e12.png") repeat-x fixed center top; background-size: cover; }
+
 .wb_sbg { background: transparent none repeat-x scroll left top; }
 body, .wb_sbg { min-width: 320px; min-height: 1900px; }
 .wb_cont_inner { width: 320px; height: 100%; }
