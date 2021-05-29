@@ -19,7 +19,7 @@ body, .wb_sbg { min-width: 320px; min-height: 1790px; }
 #wb_element_instance0 .btn-collapser:hover { background-color: #ffffff; border-color: #000000; }
 #wb_element_instance0 .btn-collapser:hover > .icon-bar { background-color: #000000; }
 #wb_element_instance0 { top: 100px; left: 26px; min-width: 280px; width: 280px; min-height: 30px; height: 30px; display: block; z-index: 846; }
-#wb_element_instance0 ul { background: #212121 none repeat left top; border: 1px none #000000; }
+#wb_element_instance0 ul { background: #122059 none repeat left top; border: 1px none #000000; }
 #wb_element_instance0 > ul { display: none; }
 #wb_element_instance0.collapse-expanded > ul { display: block; float: none; height: auto; overflow: hidden; overflow-y: auto; }
 #wb_element_instance0.collapse-expanded > ul > li { display: block; }
@@ -196,7 +196,7 @@ body, .wb_sbg { min-width: 320px; min-height: 1790px; }
 	#wb_header { height: 140px; }
 	#wb_main { height: 1331px; }
 	#wb_footer { height: 90px; }
-	body, .wb_sbg { min-width: 1200px; min-height: 1180px; }
+	body, .wb_sbg { min-width: 1200px; min-height: 1155px; }
 	.wb_cont_inner { width: 1200px; }
 	.wb_cont_bg { width: 1200px; margin-left: -600px; }
 	.root { height: 1561px; min-height: 1561px; }
