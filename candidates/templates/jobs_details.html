@@ -101,8 +101,8 @@
 	<div class="container">
 
 
-
-		<table class="table table-borderless" >
+		<div class="container">
+		<table class="table table-borderless" style="width: 75%;" >
 
 			<tbody>
 				<tr>
@@ -132,18 +132,14 @@
 					<td>{{jobs_1.No_Openings}}</td>
 				</tr>
 
-				<tr>
-					<th scope="row">Job Description: </th>
-				</tr>
-				<tr>
-					<td>
-						{{jobs_1.Description|safe}}
-					</td>
-				</tr>
 			</tbody>
 		</table>
+		<h5> <strong> Job Description :</strong> </h5>
+		<h6>{{jobs_1.Description|safe}}</h6>
+		<br>
 
 		<br>
+	</div>
 
 		<div class="row">
 			<div class="window">
