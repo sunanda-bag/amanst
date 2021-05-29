@@ -701,7 +701,8 @@
   #customers td,
   #customers th {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 0px;
+    text-align: center;
   }
 
   #customers tr:nth-child(even) {
@@ -715,7 +716,7 @@
   #customers th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #212cc5;
     color: white;
   }
@@ -747,9 +748,9 @@
   <div class="container">
     <div class="row no-gutters slider-text align-items-end justify-content-center">
       <div class="col-md-9 ftco-animate pb-5 text-center">
-        <h1 class="mb-4">Job <span> Openings</span></h1>
+        <h1 class="mb-4"> <span> Career</span></h1>
         <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="fa fa-chevron-right"></i></a></span>
-          <span>Careers<i class="fa fa-chevron-right"></i></span>
+          <span>Career <i class="fa fa-chevron-right"></i></span>
         </p>
       </div>
     </div>
@@ -771,7 +772,7 @@
 </section>
 <div class="row">
 
-  <div class="col-md-2 col-lg-2">
+  <div class="col-md-2 col-lg-2 ">
     <!-- <script type="text/javascript" src="{% static 'jobs/js/job-filter.js' %}"></script>
       <script src="{% static 'jobs/js/jquery.min.js' %}"></script>
       <script language="JavaScript" 
@@ -779,9 +780,9 @@
       </script> -->
     <br>
 
-    <h4 class="mb-4 border-bottom pb-1">Filters</h4>
+    <h4 class="mb-4 border-bottom pb-1 ml-3">Filters</h4>
     <!-- Filter 1 -->
-    <div class="card mb-4">
+    <div class="card mb-4 ml-3">
       <h6 class="card-header">Role</h6>
       <div class="list-group list-group-flush" style="font-size:small;">
         {% for role in roles %}
@@ -794,7 +795,7 @@
     </div>
     <br>
     <!-- Filter 2 -->
-    <div class="card mb-4">
+    <div class="card mb-4 ml-3">
       <h6 class="card-header">Location</h6>
       <div class="list-group list-group-flush" style="font-size: small;">
         {% for location in locations %}
@@ -813,21 +814,22 @@
   <h5>YOUR APPLICATION HAS BEEN SUBMITED SUCCESSFULLY</h5>
   {% endif %}
   <div class="col-md-10 col-lg-10" id=jobs>
+    <h2>Job Openings</h2>
     <br>
-    <br>
-    <p class="ajaxLoader">Loading...</p>
 
+    <p class="ajaxLoader">Loading...</p>
+    <div class="pr-5">
     <!-- right table section  -->
     <table class="px-4" id="customers" ;align="center">
       <tr>
-        <th>Req_Id</th>
+        <th>Req. Id</th>
         <th>Job Title</th>
-        <th>Role</th>
+        <!-- <th>Role</th> -->
         <th>Start Date</th>
         <th>End Date</th>
         <th>Submission Deadline</th>
         <th>Location</th>
-        <th>No of Openings</th>
+        <th style="width: 10%;">No. of Openings</th>
         <th>Apply Now</th>
       </tr>
       <p class="ajaxLoader"></p>
@@ -841,7 +843,7 @@
           </div>
         </td>
         <td>{{ item.Job_title }}</td>
-        <td>{{ item.role }}</td>
+        <!-- <td>{{ item.role }}</td> -->
         <td>{{ item.Start_date }}</td>
         <td>{{ item.End_date }}</td>
         <td>{{ item.Submission_deadline}}</td>
@@ -950,6 +952,7 @@
       {% endfor %}
     </table>
   </div>
+</div>
 
 
 </div>

@@ -99,11 +99,14 @@ def jobs(request):
 #    job_des= Job.objects.all()
 #    context={'jobs_details': job_des}
 #    return render(request,'jobs_details.html',context=context)
+
+
 def jobs_details(request,id):
    
     job_list_1=get_object_or_404(Job,pk=id)
+    data = {'jobs_1':job_list_1}    
+    return render(request,'jobs_details.html',data)
     
-    return render(request,'jobs_details.html',{'jobs_1':job_list_1})
 
 def jobs_filter(request):
     roles=request.GET.getlist('role[]')
