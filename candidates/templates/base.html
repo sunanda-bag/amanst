@@ -1,12 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>AMANST</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  {% load static %}
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap">
+	<title>AMANST</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap">
+
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="{% static 'jobs/css/animate.css' %}">
 	<link rel="stylesheet" href="{% static 'jobs/css/owl.carousel.min.css' %}">
@@ -14,59 +17,72 @@
 	<link rel="stylesheet" href="{% static 'jobs/css/magnific-popup.css' %}">
 	<link rel="stylesheet" href="{% static 'jobs/css/flaticon.css' %}">
 	<link rel="stylesheet" href="{% static 'jobs/css/style.css' %}" type="text/css">
+
+	<link href="{% static 'jobs/css/1.css' %}" rel="stylesheet" type="text/css" id="wb-page-stylesheet" />
+	<link href="{% static 'jobs/css/site.css' %}" rel="stylesheet" type="text/css" id="wb-site-stylesheet" />
+	<link href="{% static 'jobs/css/common.css' %}" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
-  <div class="wrap">
-   <div class="container">
-    <div class="row justify-content-between">
-      
-     <div class="col-12 col-md d-flex justify-content-md-end">
-       <div class="social-media">
-        <p class="mb-0 d-flex">
-         <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
-         <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
-         </p>
-     </div>
-   </div>
- </div>
-</div>
-</div>
+	<div class="wrap">
+		<div class="container">
+			<div class="row justify-content-between">
 
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
- <div class="container">
-  <div>
-    <h2 >
-      <strong>
-        <a href="/"><span class="navbar-brand">AMANST</span></a>
-      </strong>
-    </h2>
-  </div>
-  <div id="wb_element_instance2 "class= "wb_element wb_text_element " data-plugin="TextArea" style="line-height:normal;">
-    <h5>
-      <span> Simplifying Complexity</span>
-    </h5>
+				<div class="col-12 col-md d-flex justify-content-md-end">
+					<div class="social-media">
+						<p class="mb-0 d-flex">
+							<a href="#" class="d-flex align-items-center justify-content-center"><span
+									class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+							<a href="#" class="d-flex align-items-center justify-content-center"><span
+									class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-  </div>
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-     <span class="oi oi-menu"></span> Menu
-   </button>
 
-   <div class="collapse navbar-collapse" id="ftco-nav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
-      <li class="nav-item"><a href="/about" class="nav-link">About Us</a></li>
-      <li class="nav-item"><a href="/careers" class="nav-link">Careers</a></li>
-      <li class="nav-item"><a href="/contact" class="nav-link">Contact Us</a></li>
-    
 
-    </ul>
-   </div>
- </div>
-</nav>
-<!-- END nav -->
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+		<div class="container">
+			<div id="wb_element_instance0" class="wb_element wb-menu wb-menu-mobile" data-plugin="Menu"><a
+					class="btn btn-default btn-collapser"><span class="icon-bar"></span><span
+						class="icon-bar"></span><span class="icon-bar"></span></a>
+				<ul class="hmenu open-left" dir="ltr">
+					<li ><a href="/" target="_self">Home</a></li>
+					<li><a href="/about" target="_self">About Us</a></li>
+					<li><a href="/careers" target="_self">Careers</a></li>
+					<li><a href="/contact" target="_self">Contact Us</a></li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<div id="wb_element_instance1" class="wb_element wb_text_element" data-plugin="TextArea"
+				style=" line-height: normal;">
+				<h2 class="wb-stl-heading2"><strong><span style="font-size: 42px;">AMANST</span></strong></h2>
+			</div>
+			<div id="wb_element_instance2" class="wb_element wb_text_element" data-plugin="TextArea"
+				style=" line-height: normal;">
+				<h5 class="wb-stl-custom4" style="text-align: center;"><em><span
+							style="color:rgba(255,255,255,1);">Simplifying Complexity</span></em></h5>
+			</div>
+
+		</div>
+	</nav>
+
+
+
+
+	<!-- END nav -->
+
+
+
   {% block content %}
+
   {% endblock content %} 
+  
   {% block content1 %}
+
   {% endblock content1 %} 
   <footer class="ftco-footer ftco-footer-2 ftco-section">
     <div class="container">
