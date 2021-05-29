@@ -40,7 +40,7 @@ body, .wb_sbg { min-width: 320px; min-height: 1900px; }
 #wb_element_instance2 { opacity: 1; top: 80px; left: 0px; min-width: 320px; width: 320px; min-height: 24px; height: 24px; display: block; z-index: 6950; }
 #wb_element_instance3 { top: 0px; left: 0; right: 0; min-height: 140px; height: 140px; display: block; z-index: 467; }
 #wb_element_instance3 > .wb_shp { display: block; background-color: #122059; border: 5px none #c0c0c0; border-radius: 0px 0px 0px 0px; -moz-border-radius: 0px 0px 0px 0px; -webkit-border-radius: 0px 0px 0px 0px; width: 100%; height: 140px; }
-/* #wb_element_instance3 > .wb_shp:before { background: transparent url("../gallery_gen/c743f348ce483a0e7da44c3da0f2fd64.png") no-repeat scroll left top; background-size: 140px 140px; opacity: 1; } */
+
 #wb_element_instance4 p:last-child { margin-bottom: 0; }
 #wb_element_instance4 { opacity: 1; top: 20px; left: 20px; min-width: 280px; width: 280px; min-height: 24px; height: 24px; display: block; z-index: 6949; }
 #wb_element_instance5 { top: 0px; left: 0; right: 0; min-height: 90px; height: 90px; display: block; z-index: 467; }
