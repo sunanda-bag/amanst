@@ -10,7 +10,7 @@
 #wb_footer > .wb_cont_bg:before { background: transparent none repeat-x scroll left top; background-size: auto auto; }
 
 .wb_sbg { background: transparent none repeat-x scroll left top; }
-body, .wb_sbg { min-width: 320px; min-height: 1900px; }
+body, .wb_sbg { min-width: 320px; min-height: 1790px; }
 .wb_cont_inner { width: 320px; height: 100%; }
 .wb_cont_bg { width: 320px; margin-left: -160px; }
 .root { height: 1900px; min-height: 1900px; }
@@ -94,7 +94,7 @@ body, .wb_sbg { min-width: 320px; min-height: 1900px; }
 	#wb_header { height: 140px; }
 	#wb_main { height: 1350px; }
 	#wb_footer { height: 90px; }
-	body, .wb_sbg { min-width: 768px; min-height: 1580px; }
+	body, .wb_sbg { min-width: 768px; min-height: 1480px; }
 	.wb_cont_inner { width: 768px; }
 	.wb_cont_bg { width: 768px; margin-left: -384px; }
 	.root { height: 1580px; min-height: 1580px; }
@@ -145,7 +145,7 @@ body, .wb_sbg { min-width: 320px; min-height: 1900px; }
 	#wb_header { height: 140px; }
 	#wb_main { height: 1350px; }
 	#wb_footer { height: 90px; }
-	body, .wb_sbg { min-width: 992px; min-height: 1580px; }
+	body, .wb_sbg { min-width: 992px; min-height: 1195px; }
 	.wb_cont_inner { width: 992px; }
 	.wb_cont_bg { width: 992px; margin-left: -496px; }
 	.root { height: 1580px; min-height: 1580px; }
@@ -196,7 +196,7 @@ body, .wb_sbg { min-width: 320px; min-height: 1900px; }
 	#wb_header { height: 140px; }
 	#wb_main { height: 1331px; }
 	#wb_footer { height: 90px; }
-	body, .wb_sbg { min-width: 1200px; min-height: 1561px; }
+	body, .wb_sbg { min-width: 1200px; min-height: 1180px; }
 	.wb_cont_inner { width: 1200px; }
 	.wb_cont_bg { width: 1200px; margin-left: -600px; }
 	.root { height: 1561px; min-height: 1561px; }
