@@ -10,5 +10,6 @@ path('', views.home,name="home"),
 path('about/', views.about_us,name='about_us'),
 path('contact/',views.contact_us,name="contact_us"),
 path('privacypolicy/',views.privacy,name="privacy"),
+path('terms/',views.terms,name="terms"),
 path('jobs-filter/',views.jobs_filter,name="jobs_filter"),
 ]

@@ -22,7 +22,7 @@
   <link href="{% static 'jobs/css/site.css' %}" rel="stylesheet" type="text/css" id="wb-site-stylesheet" />
   <link href="{% static 'jobs/css/common.css' %}" rel="stylesheet" type="text/css" />
   {% block css %}
-    
+
   {% endblock css %}
 </head>
 
@@ -38,7 +38,8 @@
                     class="sr-only">Facebook</i></span></a>
               <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i
                     class="sr-only">Twitter</i></span></a> -->
-              <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-linkedin"><i
+              <a href="https://www.linkedin.com/company/amanst-inc" target="_blank"
+                class="d-flex align-items-center justify-content-center"><span class="fa fa-linkedin"><i
                     class="sr-only">LinkedIn</i></span></a>
             </p>
           </div>
@@ -97,8 +98,11 @@
             <h2 class="ftco-footer-logo"><span>AMANST Inc.</span></h2>
             <p></p>
             <ul class="ftco-footer-social list-unstyled mt-2">
-              <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-              <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
+              <!-- <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li> -->
+              <li class="ftco-animate"><a href="https://www.linkedin.com/company/amanst-inc" target="_blank"><span
+                    class="fa fa-linkedin"></span></a></li>
+
 
             </ul>
           </div>
@@ -108,6 +112,7 @@
             <h2 class="ftco-heading-2">Explore</h2>
             <ul class="list-unstyled">
               <li><a href="/about" class="py-2 d-block">About</a></li>
+              <li><a href="/careers" class="py-2 d-block">Careers</a></li>
               <li><a href="/contact" class="py-2 d-block">Contact</a></li>
 
             </ul>
@@ -118,8 +123,9 @@
             <h2 class="ftco-heading-2">Legal</h2>
             <ul class="list-unstyled">
 
-              <li><a href="/privacypolicy" class="py-2 d-block">Privacy &amp; Policy</a></li>
-              <li><a href="/careers" class="py-2 d-block">Careers</a></li>
+              <li><a href="/privacypolicy" class="py-2 d-block">Privacy Policy</a></li>
+              <li><a href="/terms" class="py-2 d-block">Terms and Conditions</a></li>
+
 
             </ul>
           </div>
@@ -130,10 +136,9 @@
             <div class="block-23 mb-2">
               <ul>
                 <li><span class="icon fa fa-map marker"></span><span class="text">Toronto, Ontario, Canada</span></li>
-                <li><span class="icon fa fa-phone"></span><span class="text">+1(289)-400-5978</span>
+                <li><span class="icon fa fa-phone"></span><span class="text">+1 (289)-400-5978</span>
                 </li>
-                <li><span class="icon fa fa-paper-plane pr-4"></span><span
-                      class="text">info@amanst.ca</span></li>
+                <li><span class="icon fa fa-paper-plane pr-4"></span><span class="text">info@amanst.ca</span></li>
               </ul>
             </div>
           </div>
@@ -181,137 +186,137 @@
   <script type="text/javascript" src="{% static 'jobs/js/job-filter.js' %}"></script>
 
   <script>
-    	var closeMenus = function(ignoreMenu) {
-		$('.wb-menu').each(function() {
-			if( this == ignoreMenu )
-				return;
-			$(this).find('.over').removeClass('over over-out');
-		});
-	};
+    var closeMenus = function (ignoreMenu) {
+      $('.wb-menu').each(function () {
+        if (this == ignoreMenu)
+          return;
+        $(this).find('.over').removeClass('over over-out');
+      });
+    };
 
-	$('body').on('touchstart', function(e) {
-		var ignoreMenu = $(e.target).closest('.wb-menu');
-		ignoreMenu = ignoreMenu.length ? ignoreMenu.get(0) : null;
-		closeMenus(ignoreMenu);
-	});
+    $('body').on('touchstart', function (e) {
+      var ignoreMenu = $(e.target).closest('.wb-menu');
+      ignoreMenu = ignoreMenu.length ? ignoreMenu.get(0) : null;
+      closeMenus(ignoreMenu);
+    });
 
-	$('.wb-menu').each(function() {
-		var $menuContainer = $(this);
-		var $menu = $menuContainer.children('ul');
-		var ignoreHover = null;
-		var isLanding = $menu.is('.menu-landing');
-		var selectMenuItem = function($elem) {
-			$elem.addClass('over');
-			var $parent = $elem;
-			while( $parent.length > 0 && $parent.is('li') ) {
-				$parent.removeClass('over-out');
-				$parent = $parent.parent().parent();
-			}
-			if( $menuContainer.is('.collapse-expanded') ) {
-				$menu.find('.open-left').removeClass('open-left');
-			}
-			else {
-				var $submenu = $elem.children('ul');
-				if( $submenu.length ) {
-					$parent = $elem.parent();
-					if( $menu.is('.vmenu') && $parent.is('.open-left') ) {
-						$submenu.addClass('open-left');
-					}
-					else {
-						$submenu.removeClass('open-left');
-						var ww = $(window).width();
-						var w = $submenu.outerWidth(true);
-						if( $submenu.offset().left + w >= ww )
-							$submenu.addClass('open-left');
-					}
-					if( $submenu.offset().left < 0 )
-						$submenu.removeClass('open-left');
-				}
-			}
-		};
-		var closeMenu = function() {
-			$menu.find('li.over').addClass('over-out');
-			setTimeout(function() {
-				$menu.find('li.over-out').removeClass('over over-out');
-			}, 10);
-		};
-		$menu
-			.on('mouseover', 'li', function(e) {
-				if( ignoreHover )
-					return;
-				selectMenuItem($(this));
-			})
-			.on('mouseout', 'li', function(e) {
-				if( ignoreHover )
-					return;
-				closeMenu();
-			})
-			.on('touchstart', 'a', function(e) {
-				var $elem = $(this).parent();
-				var isOver = $elem.is('.over') || ($menuContainer.is('.collapse-expanded') && $elem.is('.active'));
+    $('.wb-menu').each(function () {
+      var $menuContainer = $(this);
+      var $menu = $menuContainer.children('ul');
+      var ignoreHover = null;
+      var isLanding = $menu.is('.menu-landing');
+      var selectMenuItem = function ($elem) {
+        $elem.addClass('over');
+        var $parent = $elem;
+        while ($parent.length > 0 && $parent.is('li')) {
+          $parent.removeClass('over-out');
+          $parent = $parent.parent().parent();
+        }
+        if ($menuContainer.is('.collapse-expanded')) {
+          $menu.find('.open-left').removeClass('open-left');
+        }
+        else {
+          var $submenu = $elem.children('ul');
+          if ($submenu.length) {
+            $parent = $elem.parent();
+            if ($menu.is('.vmenu') && $parent.is('.open-left')) {
+              $submenu.addClass('open-left');
+            }
+            else {
+              $submenu.removeClass('open-left');
+              var ww = $(window).width();
+              var w = $submenu.outerWidth(true);
+              if ($submenu.offset().left + w >= ww)
+                $submenu.addClass('open-left');
+            }
+            if ($submenu.offset().left < 0)
+              $submenu.removeClass('open-left');
+          }
+        }
+      };
+      var closeMenu = function () {
+        $menu.find('li.over').addClass('over-out');
+        setTimeout(function () {
+          $menu.find('li.over-out').removeClass('over over-out');
+        }, 10);
+      };
+      $menu
+        .on('mouseover', 'li', function (e) {
+          if (ignoreHover)
+            return;
+          selectMenuItem($(this));
+        })
+        .on('mouseout', 'li', function (e) {
+          if (ignoreHover)
+            return;
+          closeMenu();
+        })
+        .on('touchstart', 'a', function (e) {
+          var $elem = $(this).parent();
+          var isOver = $elem.is('.over') || ($menuContainer.is('.collapse-expanded') && $elem.is('.active'));
 
-				if( ignoreHover )
-					clearTimeout(ignoreHover);
-				ignoreHover = setTimeout(function() {ignoreHover = null;}, 2000);
+          if (ignoreHover)
+            clearTimeout(ignoreHover);
+          ignoreHover = setTimeout(function () { ignoreHover = null; }, 2000);
 
-				closeMenus($menuContainer.get(0));
-				closeMenu();
-				selectMenuItem($elem);
+          closeMenus($menuContainer.get(0));
+          closeMenu();
+          selectMenuItem($elem);
 
-				if( isOver || $elem.children('ul').length == 0 ) {
-					if( isLanding )
-						e.stopImmediatePropagation();
-				}
-				else {
-					e.stopImmediatePropagation();
-					e.preventDefault();
-				}
-			})
-		;
-	});
+          if (isOver || $elem.children('ul').length == 0) {
+            if (isLanding)
+              e.stopImmediatePropagation();
+          }
+          else {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+          }
+        })
+        ;
+    });
 
-	$('.wb-menu-mobile').each(function() {
-		var elem = $(this);
-		var btn = elem.children('.btn-collapser').eq(0);
-		var isLanding = (elem.children('.menu-landing').length > 0 || elem.parents('.wb_header_fixed').length > 0);
+    $('.wb-menu-mobile').each(function () {
+      var elem = $(this);
+      var btn = elem.children('.btn-collapser').eq(0);
+      var isLanding = (elem.children('.menu-landing').length > 0 || elem.parents('.wb_header_fixed').length > 0);
 
-		var onResize = function() {
-			var ul = elem.children('ul');
-			ul.css('max-height', ($(window).scrollTop() - ul.offset().top + $(window).height() - 20) + 'px');
-		};
-		
-		var updateMenuPosition = function() {
-			elem.children('ul').css({top: (btn.offset().top + btn.outerHeight() - $(window).scrollTop()) + 'px'});
-		};
-		
-		btn.on('click', function(e) {
-			if (elem.hasClass('collapse-expanded')) {
-				elem.removeClass('collapse-expanded');
-			} else {
-				elem.addClass('collapse-expanded');
-				updateMenuPosition();
-				if (isLanding) onResize();
-			}
-		});
-		$(document).on('click', function(e) {
-			if (!$(e.target).is('#' + elem.attr('id') + ', #' + elem.attr('id') + ' *')) {
-				if (elem.hasClass('collapse-expanded')) {
-					elem.removeClass('collapse-expanded');
-				}
-				e.stopPropagation();
-			}
-		});
-		
-		$(window).scroll(function() { updateMenuPosition(); });
-		
-		if( isLanding ) {
-			$(window).on('resize', onResize);
-			elem.find('li').on('click', function() {
-				elem.removeClass('collapse-expanded');
-			});
-		}
-	});
-	
+      var onResize = function () {
+        var ul = elem.children('ul');
+        ul.css('max-height', ($(window).scrollTop() - ul.offset().top + $(window).height() - 20) + 'px');
+      };
+
+      var updateMenuPosition = function () {
+        elem.children('ul').css({ top: (btn.offset().top + btn.outerHeight() - $(window).scrollTop()) + 'px' });
+      };
+
+      btn.on('click', function (e) {
+        if (elem.hasClass('collapse-expanded')) {
+          elem.removeClass('collapse-expanded');
+        } else {
+          elem.addClass('collapse-expanded');
+          updateMenuPosition();
+          if (isLanding) onResize();
+        }
+      });
+      $(document).on('click', function (e) {
+        if (!$(e.target).is('#' + elem.attr('id') + ', #' + elem.attr('id') + ' *')) {
+          if (elem.hasClass('collapse-expanded')) {
+            elem.removeClass('collapse-expanded');
+          }
+          e.stopPropagation();
+        }
+      });
+
+      $(window).scroll(function () { updateMenuPosition(); });
+
+      if (isLanding) {
+        $(window).on('resize', onResize);
+        elem.find('li').on('click', function () {
+          elem.removeClass('collapse-expanded');
+        });
+      }
+    });
+
   </script>
 
 </body>

@@ -39,6 +39,9 @@ def contact_us(request):
 def privacy(request):  
     return render(request,"privacypolicy.html",)
 
+def terms(request):  
+    return render(request,"terms.html",)
+
 def apply(request):
     # num=random.randrange(1121,9899)
     # global str_num
