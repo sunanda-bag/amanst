@@ -10,10 +10,10 @@ class CandidateResource(resources.ModelResource):
         model=Candidate
 
 class CandidateAdmin(ImportExportModelAdmin):
-    list_display = ('Name', 'Email_id','Years_of_Experience','Req_Id')
-    list_filter = ('req__Req_Id','job__title')
+    list_display = ('Name', 'Email_id','Years_of_Experience')
+    
     #list_filter = ('Role',)
-    exclude = ('job','req')
+    # exclude = ('job','req')
 class All_CandidatesAdmin(admin.ModelAdmin):
     list_display=('Name','Email_id','Expected_hourly_rate','Req_Id','status')
     list_editable=('status',)

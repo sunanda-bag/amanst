@@ -1,13 +1,13 @@
-<table id="customers" ;align="center">
+<table class="px-4" id="customers" ;align="center">
   <tr>
-    <th>Req_Id</th>
+    <th>Req. Id</th>
     <th>Job Title</th>
-    <th>Role</th>
+    <!-- <th>Role</th> -->
     <th>Start Date</th>
     <th>End Date</th>
     <th>Submission Deadline</th>
     <th>Location</th>
-    <th>No of Openings</th>
+    <th style="width: 10%;">No. of Openings</th>
     <th>Apply Now</th>
   </tr>
   <p class="ajaxLoader"></p>
@@ -21,24 +21,125 @@
       </div>
     </td>
     <td>{{ item.Job_title }}</td>
-    <td>{{ item.role }}</td>
+    <!-- <td>{{ item.role }}</td> -->
     <td>{{ item.Start_date }}</td>
     <td>{{ item.End_date }}</td>
     <td>{{ item.Submission_deadline}}</td>
     <td>{{ item.location }}</td>
     <td>{{ item.No_Openings}}</td>
     <td>
+
+
+
+
+
       <!-- <div class="window">
         <a href="http://127.0.0.1:8000/apply/" class="button" target="popup"
           onclick="window.open('http://127.0.0.1:8000/apply/','popup','width=600,height=600'); return false;">
           Click here
         </a>
       </div> -->
-      <div class="window">
+      <!-- <div class="window">
         <a href="/apply" class="button btn btn-primary mx-4" data-toggle="modal" data-target="#applyModal">
           APPLY NOW
         </a>
+      </div> -->
+
+
+
+      <div class="window">
+        <button class="button btn btn-primary mx-4" onclick="document.getElementById('id01').style.display='block'"
+          style="width:auto;">APPLY NOW </button>
+        <div id="id01" class="modal center" style="width:700px">
+          <span onclick="document.getElementById('id01').style.display='none'" class="close"
+            title="Close Modal">&times;</span>
+          <form class="modal-content" action="/careers/" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <div class="container">
+              <div style="text-align: center;">
+                <h1>APPLICATION FORM</h1>
+              </div>
+
+
+              <fieldset class="form-fieldset">
+                <div class="form-element form-input">
+                  <input id="field-omv6eo-metm0n-5j55wv-w3wbws-6nm2b9" name="Name" class="form-element-field"
+                    placeholder="" type="input" required>
+                  <div class="form-element-bar"></div>
+                  <label class="form-element-label" for="field-omv6eo-metm0n-5j55wv-w3wbws-6nm2b9">Name
+                    <abbr title="required" class="css-17wzi6">*</abbr>
+                  </label>
+                </div>
+
+                <div class="form-element form-input">
+                  <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" name="Email_id" class="form-element-field"
+                    type="email" />
+                  <div class="form-element-bar"></div>
+                  <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Email id</label>
+                </div>
+
+                <div class="form-element form-input">
+                  <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" name="Years_of_Experience"
+                    class="form-element-field" type="number" />
+                  <div class="form-element-bar"></div>
+                  <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Years of
+                    Experience</label>
+                </div>
+
+                <div class="form-element form-input">
+                  <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" name="Linkedin_Profile"
+                    class="form-element-field" type="link" />
+                  <div class="form-element-bar"></div>
+                  <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Linkedin
+                    Profile</label>
+                </div>
+
+                <div class="form-element form-input">
+                  <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" name="Expected_hourly_rate"
+                    class="form-element-field" type="number" />
+                  <div class="form-element-bar"></div>
+                  <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Desired Hourly Rate
+                    (Incorporated)</label>
+                </div>
+
+                <div class="form-element form-input">
+                  <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" accept=".docx, .doc, .pdf" name="Resume"
+                    class="form-element-field" type="file" required>
+                  <div class="form-element-bar"></div>
+                  <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Upload Resume
+                    <abbr title="required" class="css-17wzi6">*</abbr>
+                  </label>
+                </div>
+
+                <table style="border: 3px solid black">
+                  <tr>
+                    <td>
+                      CAPTCHA
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <!-- <canvas id="myCanvas" width="250" height="50" style="background-color: rgb(255, 255, 255);">{{cap}}</canvas> -->
+                      <script src='https://www.google.com/recaptcha/api.js'></script>
+                      <div class="g-recaptcha" data-sitekey="6LeQsNsaAAAAADWnv46a6uucTtiGCHxzYFGX-6Ud"></div>
+                    </td>
+                </table>
+
+              </fieldset>
+            </div>
+            <div class="clearfix">
+              <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                class="cancelbtn">Cancel</button>
+              <button type="submit" class="signupbtn">Submit</button>
+            </div>
+          </form>
+
+        </div>
       </div>
+
+
+
+
     </td>
   </tr>
   {% endfor %}

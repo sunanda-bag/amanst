@@ -81,10 +81,10 @@ def apply_submit(request):
         #     return HttpResponse("<h4>YOUR APPLICATION HAS BEEN SUBMITED SUCCESSFULLY</h4>")
         # else:
         #     return HttpResponse("<h4>Error captha</h4>") 
-    if verify:
-        return HttpResponse('<script>alert("sucess");</script>')
-    else:
-        return HttpResponse('<script>alert("not sucess");</script>') 
+        # if verify:
+        #     return HttpResponse('<script>alert("sucess");</script>')
+        # else:
+        #     return HttpResponse('<script>alert("not sucess");</script>') 
     context = {'name':name} 
     return render(request, "apply.html",)
 

@@ -21,6 +21,15 @@
   <link href="{% static 'jobs/css/1.css' %}" rel="stylesheet" type="text/css" id="wb-page-stylesheet" />
   <link href="{% static 'jobs/css/site.css' %}" rel="stylesheet" type="text/css" id="wb-site-stylesheet" />
   <link href="{% static 'jobs/css/common.css' %}" rel="stylesheet" type="text/css" />
+  <style>
+		footer {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			text-align: center;
+		}
+	</style>
   {% block css %}
 
   {% endblock css %}
@@ -90,7 +99,7 @@
   {% block content1 %}
 
   {% endblock content1 %}
-  <footer class="ftco-footer ftco-footer-2 ftco-section">
+  <footer class="ftco-footer ftco-footer-2 ">
     <div class="container">
       <div class="row mb-3">
         <div class="col-md">

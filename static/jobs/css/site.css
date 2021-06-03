@@ -69,8 +69,8 @@ a img		{ border: none; }
 	visibility: hidden; font-size: 1px; line-height: 1px;
 }
 
-.wb_container	{ position: relative; z-index: 3; }
-.wb_cont_inner { position: relative; margin: 0 auto; width: 1200px; }
+.wb_container	{ position: relative; z-index: 3;top: 120px; }
+.wb_cont_inner { position: relative; margin: 0 auto; width: 100%; }
 .wb_cont_outer { position: absolute; left: 0; top: 0; width: 100%; }
 .wb_cont_inner_rel { position: relative; margin: 0 auto; width: 100%; }
 .wb_cont_outer_rel { position: relative; width: 100%; }

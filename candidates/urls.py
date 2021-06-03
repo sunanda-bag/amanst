@@ -1,8 +1,8 @@
 from django.urls import path, include
 from . import views
 
-urlpatterns=[path('apply_submit/', views.apply_submit, name ='Apply_submit'),
-path('apply/', views.apply, name ='Apply'),
+urlpatterns=[path('apply/', views.apply_submit, name ='Apply_submit'),
+# path('apply/', views.apply, name ='Apply'),
 path('captcha/', include('captcha.urls')),
 path('careers/', views.jobs, name ='jobs'),
 path('careers/<int:id>', views.jobs_details, name ='jobs_des'),
