@@ -8918,15 +8918,15 @@ textarea.form-control {
   position: relative; }
   @media (min-width: 767.98px) {
     .ftco-section {
-      padding: 0em 0;
+      padding: 2em 0;
     height: 770px; } }
   @media (min-width: 992px) {
     .ftco-section {
-      padding: 0em 0;
+      padding: 2em 0;
     height: 525px; } }
   @media (max-width: 767px) {
     .ftco-section {
-      padding: 0em 0;
+      padding: 2em 0;
     height: 800px; } }
 
 
