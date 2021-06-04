@@ -53,8 +53,9 @@
         <div id="id01" class="modal center" style="width:700px">
           <span onclick="document.getElementById('id01').style.display='none'" class="close"
             title="Close Modal">&times;</span>
-          <form class="modal-content" action="/careers/" enctype="multipart/form-data" method="POST">
-            {% csrf_token %}
+            <form class="modal-content form-card" action="/apply_submit/" enctype="multipart/form-data"
+            method="POST">{% csrf_token %}
+
             <div class="container">
               <div style="text-align: center;">
                 <h1>APPLICATION FORM</h1>
@@ -66,7 +67,8 @@
                   <input id="field-omv6eo-metm0n-5j55wv-w3wbws-6nm2b9" name="Name" class="form-element-field"
                     placeholder="" type="input" required>
                   <div class="form-element-bar"></div>
-                  <label class="form-element-label" for="field-omv6eo-metm0n-5j55wv-w3wbws-6nm2b9">Name
+                  <label class="form-element-label" for="field-omv6eo-metm0n-5j55wv-w3wbws-6nm2b9"
+                    style="text-align: left;">Name
                     <abbr title="required" class="css-17wzi6">*</abbr>
                   </label>
                 </div>
@@ -75,16 +77,31 @@
                   <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" name="Email_id" class="form-element-field"
                     type="email" />
                   <div class="form-element-bar"></div>
-                  <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Email id</label>
+                  <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Email
+                    id</label>
                 </div>
 
                 <div class="form-element form-input">
                   <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" name="Years_of_Experience"
-                    class="form-element-field" type="number" />
+                    class="form-element-field" type="number" pattern="/^-?\d+\.?\d*$/"
+                    onKeyPress="if(this.value.length==1) return false;" />
                   <div class="form-element-bar"></div>
                   <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Years of
                     Experience</label>
                 </div>
+                <!-- Hidden fields start  -->
+                <div class="form-element form-input">
+                  <input type="hidden" id="req_id" name="req_id" maxlength="1" class="form-element-field"
+                    value=" {{ item.Req_Id }}" />
+
+                </div>
+
+                <div class="form-element form-input">
+                  <input type="hidden" id="role" name="role" maxlength="1" class="form-element-field"
+                    value=" {{ item.role }}" />
+
+                </div>
+                <!-- Hidden fields end  -->
 
                 <div class="form-element form-input">
                   <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" name="Linkedin_Profile"
@@ -96,10 +113,11 @@
 
                 <div class="form-element form-input">
                   <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" name="Expected_hourly_rate"
-                    class="form-element-field" type="number" />
+                    class="form-element-field" type="number" pattern="/^-?\d+\.?\d*$/"
+                    onKeyPress="if(this.value.length==2) return false;" />
                   <div class="form-element-bar"></div>
-                  <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Desired Hourly Rate
-                    (Incorporated)</label>
+                  <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Desired Hourly
+                    Rate(Incorporated)</label>
                 </div>
 
                 <div class="form-element form-input">
@@ -133,6 +151,7 @@
               <button type="submit" class="signupbtn">Submit</button>
             </div>
           </form>
+
 
         </div>
       </div>

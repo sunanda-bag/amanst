@@ -1,5 +1,5 @@
 from django.http.response import JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from .forms import *
 from .models import *
@@ -60,6 +60,8 @@ def apply_submit(request):
     years_of_experience=request.POST['Years_of_Experience']
     linkedin_profile= request.POST['Linkedin_Profile']
     expected_hourly_rate=request.POST['Expected_hourly_rate']
+    role=request.POST['role']
+    req_id=request.POST['req_id']
     resume= request.FILES['Resume']
     clientkey=request.POST['g-recaptcha-response']
     secretkey='6LeQsNsaAAAAAH4ckMnBLNWMWWnBNbWMAGqJvERR'
@@ -73,7 +75,7 @@ def apply_submit(request):
     fs=FileSystemStorage()
     fs.save(resume.name, resume)
     Cand = Candidate(Name=name,Email_id=email_id,Years_of_Experience=years_of_experience,Linkedin_Profile=linkedin_profile,
-                    Expected_hourly_rate=expected_hourly_rate, Resume= resume,)  
+                    Expected_hourly_rate=expected_hourly_rate, Resume= resume,role=role ,req_id=req_id)  
     Cand.save()
     
         # if str(cap)==str_num :
@@ -81,12 +83,12 @@ def apply_submit(request):
         #     return HttpResponse("<h4>YOUR APPLICATION HAS BEEN SUBMITED SUCCESSFULLY</h4>")
         # else:
         #     return HttpResponse("<h4>Error captha</h4>") 
-        # if verify:
-        #     return HttpResponse('<script>alert("sucess");</script>')
-        # else:
-        #     return HttpResponse('<script>alert("not sucess");</script>') 
+    # if verify:
+    #     return HttpResponse('<script>alert("sucess");</script>')
+    # else:
+    #     return HttpResponse('<script>alert("not sucess");</script>') 
     context = {'name':name} 
-    return render(request, "apply.html",)
+    return redirect('/careers') 
 
         
 def jobs(request):

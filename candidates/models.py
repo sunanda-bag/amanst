@@ -95,14 +95,14 @@ class Candidate(models.Model):
     Linkedin_Profile = models.CharField(max_length=100,null = True)
     Expected_hourly_rate = models.DecimalField(null = True, blank=True, default=None,max_digits=2,decimal_places=0 )
     Resume = models.FileField(upload_to='doc', validators=[file_size])
-    job=models.ForeignKey(Role, on_delete=models.CASCADE,null=True)
-    req=models.ForeignKey(Job, on_delete=models.CASCADE,null=True)
+    role=models.CharField(max_length=100,null = True,blank=True)
+    req_id=models.CharField(max_length=100,null = True,blank=True)
 
     def __str__(self):
         return self.Name
 
     def Req_Id(self):
-        return self.req.Req_Id
+        return self.job
 
 
 class CandidateJobMap(models.Model):
