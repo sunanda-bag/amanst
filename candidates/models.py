@@ -72,7 +72,7 @@ Apply Button
     """
     
 
-    Req_Id = models.IntegerField()
+    Req_Id = models.CharField (max_length=20)
     Job_title = models.CharField (max_length=255)
     role=models.ForeignKey(Role,on_delete=models.CASCADE)
     location=models.ForeignKey(Location,on_delete=models.CASCADE)

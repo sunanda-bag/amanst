@@ -18,24 +18,28 @@
   <link rel="stylesheet" href="{% static 'jobs/css/flaticon.css' %}">
   <link rel="stylesheet" href="{% static 'jobs/css/style.css' %}" type="text/css">
 
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@300;400&display=swap" rel="stylesheet">
+
+
   <link href="{% static 'jobs/css/1.css' %}" rel="stylesheet" type="text/css" id="wb-page-stylesheet" />
   <link href="{% static 'jobs/css/site.css' %}" rel="stylesheet" type="text/css" id="wb-site-stylesheet" />
   <link href="{% static 'jobs/css/common.css' %}" rel="stylesheet" type="text/css" />
   <style>
-		footer {
-			position: fixed;
-			left: 0;
-			bottom: 0;
-			width: 100%;
-			text-align: center;
-		}
-	</style>
+    footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+    }
+  </style>
   {% block css %}
 
   {% endblock css %}
 </head>
 
-<body>
+<body style="font-family: 'Source Serif Pro', serif;">
   <div class="wrap">
     <div class="container">
       <div class="row justify-content-between">
@@ -100,24 +104,24 @@
 
   {% endblock content1 %}
   <footer class="ftco-footer ftco-footer-2 ">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row mb-3">
         <div class="col-md">
-          <div class="ftco-footer-widget mb-3">
+          <div class="ftco-footer-widget mb-3 text-center">
             <h2 class="ftco-footer-logo"><span>AMANST Inc.</span></h2>
             <p></p>
             <ul class="ftco-footer-social list-unstyled mt-2">
               <!-- <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
               <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li> -->
-              <li class="ftco-animate"><a href="https://www.linkedin.com/company/amanst-inc" target="_blank"><span
-                    class="fa fa-linkedin"></span></a></li>
+              <a href="https://www.linkedin.com/company/amanst-inc" target="_blank"><li class="ftco-animate"><span
+                    class="fa fa-linkedin"></span></li></a>
 
 
             </ul>
           </div>
         </div>
         <div class="col-md">
-          <div class="ftco-footer-widget mb-2 ml-md-5">
+          <div class="ftco-footer-widget mb-3 text-center ">
             <h2 class="ftco-heading-2">Explore</h2>
             <ul class="list-unstyled">
               <li><a href="/about" class="py-2 d-block">About</a></li>
@@ -128,7 +132,7 @@
           </div>
         </div>
         <div class="col-md">
-          <div class="ftco-footer-widget mb-3">
+          <div class="ftco-footer-widget mb-3 text-center">
             <h2 class="ftco-heading-2">Legal</h2>
             <ul class="list-unstyled">
 
@@ -139,10 +143,10 @@
             </ul>
           </div>
         </div>
-        <div class="col-md">
-          <div class="ftco-footer-widget mb-3">
-            <h2 class="ftco-heading-2">Have a Questions?</h2>
-            <div class="block-23 mb-2">
+        <div class="col-md mr-4">
+          <div class="ftco-footer-widget mb-3 text-center">
+            <h2 class="ftco-heading-2">Have a Question ?</h2>
+            <div class="block-23 mb-2 text-center">
               <ul>
                 <li><span class="icon fa fa-map marker"></span><span class="text">Toronto, Ontario, Canada</span></li>
                 <li><span class="icon fa fa-phone"></span><span class="text">+1 (289)-400-5978</span>
@@ -327,9 +331,9 @@
     });
 
   </script>
-{% block js %}
-  
-{% endblock js %}
+  {% block js %}
+
+  {% endblock js %}
 </body>
 
 </html>

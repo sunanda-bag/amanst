@@ -8928,6 +8928,10 @@ textarea.form-control {
     .ftco-section {
       padding: 2em 0;
     height: 800px; } }
+  @media (min-width: 1200px) {
+    .ftco-section {
+      padding: 3em 0;
+    height: 600px; } }
 
 
 .ftco-no-pt {

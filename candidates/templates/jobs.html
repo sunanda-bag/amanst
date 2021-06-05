@@ -609,7 +609,7 @@
   .cancelbtn,
   .signupbtn {
     float: left;
-    width: 50%;
+    width: 30%;
   }
 
   /* Add padding to container elements */
@@ -770,9 +770,9 @@
   </div>
   <div class="container-fluid">
 </section>
-<div class="row">
+<div class="row" >
 
-  <div class="col-md-2 col-lg-2 ">
+  <div class="col-md-2 col-lg-2 " style="color: black;">
     <!-- <script type="text/javascript" src="{% static 'jobs/js/job-filter.js' %}"></script>
       <script src="{% static 'jobs/js/jquery.min.js' %}"></script>
       <script language="JavaScript" 
@@ -795,7 +795,7 @@
     </div>
     <br>
     <!-- Filter 2 -->
-    <div class="card mb-4 ml-3">
+    <div class="card mb-4 ml-3 " style="color: black;">
       <h6 class="card-header">Location</h6>
       <div class="list-group list-group-flush" style="font-size: small;">
         {% for location in locations %}
@@ -813,7 +813,7 @@
   {% if name %}
   <h5>YOUR APPLICATION HAS BEEN SUBMITED SUCCESSFULLY</h5>
   {% endif %}
-  <div class="col-md-10 col-lg-10" id=jobs>
+  <div class="col-md-10 col-lg-10" id="jobs" style="color: black;">
     <h2>Job Openings</h2>
     <br>
 
@@ -868,9 +868,9 @@
                 <form class="modal-content form-card" action="/apply_submit/" enctype="multipart/form-data"
                   method="POST">{% csrf_token %}
 
-                  <div class="container">
+                  <div class="container pt-4">
                     <div style="text-align: center;">
-                      <h1>APPLICATION FORM</h1>
+                      <h2>APPLICATION FORM</h2>
                     </div>
 
 
@@ -895,8 +895,8 @@
 
                       <div class="form-element form-input">
                         <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" name="Years_of_Experience"
-                          class="form-element-field" type="number" pattern="/^-?\d+\.?\d*$/"
-                          onKeyPress="if(this.value.length==1) return false;" />
+                          class="form-element-field" type="number" min="0" max="99.9" step="0.01" pattern="/^[0-9]{0,2}.?[0-9]{0,1}/"
+                          onKeyPress="if(this.value.length==4) return false;" />
                         <div class="form-element-bar"></div>
                         <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Years of
                           Experience</label>
@@ -906,7 +906,10 @@
                         <input type="hidden" id="req_id" name="req_id" maxlength="1" class="form-element-field"
                           value=" {{ item.Req_Id }}" />
 
-                      </div>
+
+                          <!-- <div class="form-element-bar"></div>
+                        <label class="form-element-label" for="req_id">{{ item.Req_Id }}</label>
+                      </div> -->
 
                       <div class="form-element form-input">
                         <input type="hidden" id="role" name="role" maxlength="1" class="form-element-field"
@@ -925,8 +928,8 @@
 
                       <div class="form-element form-input">
                         <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" name="Expected_hourly_rate"
-                          class="form-element-field" type="number" pattern="/^-?\d+\.?\d*$/"
-                          onKeyPress="if(this.value.length==2) return false;" />
+                          class="form-element-field" type="number" min="0" max="9" step="0.01" pattern="/^-?\d+\.?\d*$/"
+                          onKeyPress="if(this.value.length==5) return false;" />
                         <div class="form-element-bar"></div>
                         <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Desired Hourly
                           Rate(Incorporated)</label>
@@ -957,10 +960,10 @@
 
                     </fieldset>
                   </div>
-                  <div class="clearfix">
+                  <div class="clearfix text-center">
                     <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                      class="cancelbtn">Cancel</button>
-                    <button type="submit" class="signupbtn">Submit</button>
+                      class="btn px-1 m-4 py-2 text-center ml-5 cancelbtn">Cancel</button>
+                    <button type="submit" class="signupbtn text-center btn btn-success px-1 m-4 py-2  ml-4">Submit</button>
                   </div>
                 </form>
 
