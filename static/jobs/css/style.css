@@ -8421,14 +8421,14 @@ h1, h2, h3, h4, h5,
     opacity: .6;
     background: #060a24; }
   .hero-wrap.hero-wrap-2 {
-    height: 600px; }
+    height: 430px; }
     .hero-wrap.hero-wrap-2 .overlay {
-      height: 600px;
+      height: 430px;
       width: 100%;
       background: #212cc5;
       opacity: .6; }
     .hero-wrap.hero-wrap-2 .slider-text {
-      height: 600px; }
+      height: 430px; }
 
 .slider-text h1 {
   font-size: 50px;
