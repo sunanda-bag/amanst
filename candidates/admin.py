@@ -23,7 +23,7 @@ class CandidateInline(admin.TabularInline):
     model = CandidateJobMap
 class JobAdmin(admin.ModelAdmin):
     inlines=(CandidateInline,)
-    list_display=('Req_Id','Job_title',)
+    list_display=('Req_Id','Job_title','job_active')
 # Register your models here.
 admin.site.register(Job,JobAdmin)
 admin.site.register(Candidate, CandidateAdmin)

@@ -299,10 +299,10 @@
   /* Modal Content/Box */
   .modal-content {
     background-color: #fefefe;
-    margin: 3% auto 0% auto;
+    margin: 5% auto 15% auto;
     /* 5% from the top, 15% from the bottom and centered */
-    border: 0px solid #888;
-    width: 90%;
+    border: 1px solid #888;
+    width: 70%;
     height: 50%;
     /* Could be more or less, depending on screen size */
   }
@@ -355,7 +355,7 @@
   }
 
   .form-fieldset {
-    padding: 2px;
+    padding: 30px;
     border: 0;
   }
 
@@ -389,11 +389,9 @@
 
   .form-element-bar {
     position: relative;
-    height: 0.5px;
-    background: #504e4e;
+    height: 1px;
+    background: #999;
     display: block;
-    margin-left: 4%;
-    margin-right: 4%;
   }
 
   .form-element-bar::after {
@@ -412,10 +410,10 @@
 
   .form-element-label {
     position: absolute;
-    top: 2.1rem;
+    top: 0.75rem;
     line-height: 1.5rem;
     pointer-events: none;
-    padding-left: 0.525rem;
+    padding-left: 0.125rem;
     z-index: 1;
     font-size: 1rem;
     font-weight: normal;
@@ -432,15 +430,15 @@
 
   .form-element-field {
     outline: none;
-    height: 3.5rem;
+    height: 1.5rem;
     display: block;
     background: none;
-    padding: 1.2rem 0.525rem 0.0625rem;
+    padding: 0.125rem 0.125rem 0.0625rem;
     font-size: 1rem;
     border: 0 solid transparent;
-    line-height: 1.6;
+    line-height: 1.5;
     width: 100%;
-    color: #000;
+    color: #333;
     box-shadow: none;
     opacity: 0.001;
     transition: opacity 0.28s ease;
@@ -571,17 +569,116 @@
 </style>
 
 
-<style>
+
+
+
+<!-- <style>
   body {
     font-family: Arial, Helvetica, sans-serif;
   }
 
+  * {
+    box-sizing: border-box;
+  }
 
+  /* Full-width input fields */
+  input[type=text],
+  input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+
+  /* Add a background color when the inputs get focus */
+  input[type=text]:focus,
+  input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+
+  /* Set a style for all buttons */
+  button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+
+  button:hover {
+    opacity: 1;
+  }
+
+  /* Float cancel and signup buttons and add an equal width */
+  .cancelbtn,
+  .signupbtn {
+    float: left;
+    width: 20%;
+  }
+
+  /* Add padding to container elements */
+  .container {
+  padding: 16px;
+}
+
+  /* The Modal (background) */
+  .modal {
+    display: none;
+    /* Hidden by default */
+    position: center;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 20%;
+    top: 5%;
+    width: 100%;
+    /* Full width */
+    height: 200%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: #474e5d;
+    padding-top: 26px;
+  }
+
+
+  
   /* Style the horizontal ruler */
   hr {
     border: 1px solid #f1f1f1;
     margin-bottom: 25px;
   }
+
+  /* The Close Button (x) */
+  .close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #f44336;
+    cursor: pointer;
+  }
+
+  /* Clear floats */
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+
 
   #customers {
     border-collapse: collapse;
@@ -600,7 +697,7 @@
   #customers th {
     border: 1px solid #ddd;
     padding: 0px;
-    text-align: center;
+    text-align: left;
   }
 
   #customers tr:nth-child(even) {
@@ -634,139 +731,7 @@
     transition: 0.4s;
 
   }
-
-  button:hover {
-    opacity: 1;
-  }
-
-  /* Float cancel and signup buttons and add an equal width */
-  .cancelbtn,
-  .signupbtn {
-    float: left;
-    width: 20%;
-  }
-</style>
-
-<style>
-  * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-  }
-
-
-  .center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .center button {
-    padding: 10px 20px;
-    font-size: 15px;
-    font-weight: 600;
-    color: #222;
-    background: #f5f5f5;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-
-  .popup {
-    position: absolute;
-    top: -100%;
-    z-index: 1000;
-    left: 50%;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1.25);
-    width: 570px;
-    height: auto;
-    padding: 15px 15px;
-    background: #eeeef1;
-    box-shadow: 5px 1px 6px 6px rgba(0, 0, 0, 0.15);
-    border-radius: 12px;
-    transition: top 0ms ease-in-out 200ms,
-      opacity 200ms ease-in-out 0ms,
-      transform 200ms ease-in-out 0ms;
-  }
-
-  .popup.active {
-    top: 50%;
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    transition: top 0ms ease-in-out 0ms,
-      opacity 200ms ease-in-out 0ms,
-      transform 200ms ease-in-out 0ms;
-  }
-
-  .popup .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-    background: #888;
-    color: #eee;
-    text-align: center;
-    line-height: 15px;
-    border-radius: 15px;
-    cursor: pointer;
-  }
-
-  .popup .form h2 {
-    text-align: center;
-    color: #222;
-    margin: 10px 0px 20px;
-    font-size: 25px;
-  }
-
-  .popup .form .form-element {
-    margin: 15px 0px;
-  }
-
-  .popup .form .form-element label {
-    font-size: 16px;
-    color: #3f47bd;
-  }
-
-  .popup .form .form-element input[type="text"],
-  .popup .form .form-element input[type="password"] {
-    margin-top: 5px;
-    display: block;
-    width: 100%;
-    padding: 10px;
-    outline: none;
-    border: 1px solid #aaa;
-    border-radius: 5px;
-  }
-
-  .popup .form .form-element input[type="checkbox"] {
-    margin-right: 5px;
-  }
-
-  .popup .form .form-element button {
-    width: 100%;
-    height: 40px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    background: #222;
-    color: #f5f5f5;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-
-  .popup .form .form-element a {
-    display: block;
-    text-align: right;
-    font-size: 15px;
-    color: #1a79ca;
-    text-decoration: none;
-    font-weight: 600;
-  }
-</style>
+</style> -->
 
 {% endblock css %}
 
@@ -812,7 +777,7 @@
 
     <h4 class="mb-4 border-bottom pb-1 ml-3">Filters</h4>
     <!-- Filter 1 -->
-    <div class="card mb-4 ml-3 mr-2">
+    <div class="card mb-4 ml-3">
       <h6 class="card-header">Role</h6>
       <div class="list-group list-group-flush" style="font-size:small;">
         {% for role in roles %}
@@ -825,7 +790,7 @@
     </div>
     <br>
     <!-- Filter 2 -->
-    <div class="card mb-4 ml-3 mr-2 " style="color: black;">
+    <div class="card mb-4 ml-3 " style="color: black;">
       <h6 class="card-header">Location</h6>
       <div class="list-group list-group-flush" style="font-size: small;">
         {% for location in locations %}
@@ -864,16 +829,12 @@
         </tr>
         <p class="ajaxLoader"></p>
         {% for item in job_list %}
-        {% if item.job_active %}
-
-
-        <tr style="text-align: center;">
+        <tr>
           <td>
             <div>
               <a href="{{item.id}}">
                 {{ item.Req_Id }}
               </a>
-
             </div>
           </td>
           <td>{{ item.Job_title }}</td>
@@ -884,25 +845,37 @@
           <td>{{ item.location }}</td>
           <td>{{ item.No_Openings}}</td>
           <td>
-          
+            <!-- <div class="window">
+              <a href="http://127.0.0.1:8000/apply/" class="button" target="popup"
+                onclick="window.open('http://127.0.0.1:8000/apply/','popup','width=600,height=600'); return false;">
+                Click here
+              </a>
+            </div> -->
 
 
-            <a href="{{item.id}}" class=" btn btn-primary m-2" id="show-login">VIEW
-            </a>
-<!-- 
-            <div class="">
+            <div class="row">
               <div class="window">
-                <button class="button btn btn-primary m-2" id="show-login">APPLY NOW
+                <button class="button btn btn-primary mx-4"
+                  onclick="document.getElementById('id01').style.display='block'" style="width:auto;">APPLY NOW
                 </button>
-                <div class="popup" id="popup">
-                  <div class="close-btn">&times;</div>
-                  <form class="modal-content" action="" enctype="multipart/form-data" method="POST">{% csrf_token %}
-                    
 
-                    <div class="form">
-                      <h1 style="text-align:center;">Application Form</h1>
 
-                      <fieldset class="form-fieldset" style="text-align: left;">
+
+
+
+                <div id="id01" class="modal center" style="width:700px">
+                  <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+                  <form class="modal-content" action="/apply_submit/" enctype="multipart/form-data" method="POST">{%
+                    csrf_token %}
+
+                    <div class="container">
+                      <div style="text-align: center;">
+                        <h1>APPLICATION FORM</h1>
+                      </div>
+
+
+                      <fieldset class="form-fieldset">
                         <div class="form-element form-input">
                           <input id="field-omv6eo-metm0n-5j55wv-w3wbws-6nm2b9" name="Name" class="form-element-field"
                             placeholder="" type="input" required>
@@ -918,8 +891,7 @@
                             class="form-element-field" type="email" />
                           <div class="form-element-bar"></div>
                           <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Email
-                            id
-                          </label>
+                            id</label>
                         </div>
 
                         <div class="form-element form-input">
@@ -928,17 +900,28 @@
                             onKeyPress="if(this.value.length==1) return false;" />
                           <div class="form-element-bar"></div>
                           <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Years of
-                            Experience
-                          </label>
+                            Experience</label>
                         </div>
+                        <!-- Hidden fields start  -->
+                        <!-- <div class="form-element form-input">
+                      <input type="hidden" id="req_id" name="req_id" maxlength="1" class="form-element-field"
+                        value=" {{ item.Req_Id }}" />
+              
+                      </div>
+              
+                      <div class="form-element form-input">
+                      <input type="hidden" id="role" name="role" maxlength="1" class="form-element-field"
+                        value=" {{ item.role }}" />
+              
+                      </div> -->
+                        <!-- Hidden fields end  -->
 
                         <div class="form-element form-input">
                           <input id="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop" name="Linkedin_Profile"
                             class="form-element-field" type="link" />
                           <div class="form-element-bar"></div>
                           <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Linkedin
-                            Profile
-                          </label>
+                            Profile</label>
                         </div>
 
                         <div class="form-element form-input">
@@ -947,8 +930,8 @@
                             onKeyPress="if(this.value.length==2) return false;" />
                           <div class="form-element-bar"></div>
                           <label class="form-element-label" for="field-x98ezh-s6s2g8-vfrkgb-ngrhef-atfkop">Desired
-                            Hourly Rate(Incorporated)
-                          </label>
+                            Hourly
+                            Rate(Incorporated)</label>
                         </div>
 
                         <div class="form-element form-input">
@@ -960,74 +943,80 @@
                           </label>
                         </div>
 
-                         <table style="border: 1px solid rgb(44, 43, 43);margin: 5px;">
+                        <table style="border: 3px solid black">
                           <tr>
                             <td>
                               CAPTCHA
                             </td>
                           </tr>
                           <tr>
-                            <td> -->
-                        <!-- <canvas id="myCanvas" width="250" height="50" style="background-color: rgb(255, 255, 255);">{{cap}}</canvas> -->
-                        <!-- <script src='https://www.google.com/recaptcha/api.js'></script>
+                            <td>
+                              <!-- <canvas id="myCanvas" width="250" height="50" style="background-color: rgb(255, 255, 255);">{{cap}}</canvas> -->
+                              <script src='https://www.google.com/recaptcha/api.js'></script>
                               <div class="g-recaptcha" data-sitekey="6LeQsNsaAAAAADWnv46a6uucTtiGCHxzYFGX-6Ud"></div>
                             </td>
-                          </tr>
-                        </table> 
-
-
+                        </table>
 
                       </fieldset>
-                      
-                      <div class="clearfix mb-3 mt-5">
-                        <button type="button" id="show-cancel" class="btn btn-danger mr-3 cancelbtn"
-                          style="width: 30%; margin-left: 15%;">Cancel</button>
-                        <a href="{{item.get_apply_submit_url}}" id="show-submit" class="btn btn-success ml-2 signupbtn"
-                          style="width: 30%; margin-right: 15%;">Submit</a>
-                      </div>
+                    </div>
+                    <div class="clearfix">
+                      <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                        class="cancelbtn">Cancel</button>
+                      <button type="submit" class="signupbtn">Submit</button>
                     </div>
                   </form>
+
+
                 </div>
 
+
+
+
+
+
               </div>
+
+
+
             </div>
- -->
+
+
 
           </td>
         </tr>
 
-        {% endif %}
+
+
+
+
+
+
 
         {% endfor %}
       </table>
       <br>
+      <!-- pagination starts  -->
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
 
+      <!-- pagination ends  -->
     </div>
-  
-
-  <!-- pagination starts  -->
-  <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-
-  <!-- pagination ends  -->
-
-
-</div>
+  </div>
 
 
 </div>
@@ -1061,12 +1050,6 @@
 </div> -->
 
 
-{% endblock %}
-
-{% block js %}
-
-
-
 <script type="text/javascript">
   function VerifyUploadSizeIsOK() {
 
@@ -1092,6 +1075,9 @@
   integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+
+
 <script>
   // Get the modal
   var modal = document.getElementById('id01');
@@ -1103,15 +1089,5 @@
     }
   }
 </script>
-<script>
-  document.querySelector("#show-login").addEventListener("click", function () {
-    document.querySelector(".popup").classList.add("active");
-  });
-  document.querySelector(".popup .close-btn").addEventListener("click", function () {
-    document.querySelector(".popup").classList.remove("active");
-  });
-  document.querySelector(".popup .cancelbtn").addEventListener("click", function () {
-    document.querySelector(".popup").classList.remove("active");
-  });
-</script>
-{% endblock js %}
+
+{% endblock %}

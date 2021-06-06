@@ -12,4 +12,6 @@ path('contact/',views.contact_us,name="contact_us"),
 path('privacypolicy/',views.privacy,name="privacy"),
 path('terms/',views.terms,name="terms"),
 path('jobs-filter/',views.jobs_filter,name="jobs_filter"),
+
+path('apply_submit/<int:id>/',views.apply_submit,name="apply_submit"),
 ]

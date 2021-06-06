@@ -10,6 +10,8 @@ from .models import Role_choices
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
 import json, requests
+from decimal import Decimal
+
 
 def home(request):  
     return render(request,"index.html",)
@@ -53,42 +55,7 @@ def apply(request):
     }
     return render(request, "apply.html", context)
 
-def apply_submit(request):
-    
-    name= request.POST['Name']
-    email_id= request.POST['Email_id']
-    years_of_experience=request.POST['Years_of_Experience']
-    linkedin_profile= request.POST['Linkedin_Profile']
-    expected_hourly_rate=request.POST['Expected_hourly_rate']
-    role=request.POST['role']
-    req_id=request.POST['req_id']
-    resume= request.FILES['Resume']
-    clientkey=request.POST['g-recaptcha-response']
-    secretkey='6LeQsNsaAAAAAH4ckMnBLNWMWWnBNbWMAGqJvERR'
-    capthchaData={
-        'secret':secretkey,
-        'response':clientkey,
-        }
-    r=requests.post( 'https://www.google.com/recaptcha/api/siteverify', data=capthchaData)
-    response=json.loads(r.text)
-    verify=response['success']
-    fs=FileSystemStorage()
-    fs.save(resume.name, resume)
-    Cand = Candidate(Name=name,Email_id=email_id,Years_of_Experience=years_of_experience,Linkedin_Profile=linkedin_profile,
-                    Expected_hourly_rate=expected_hourly_rate, Resume= resume,role=role ,req_id=req_id)  
-    Cand.save()
-    
-        # if str(cap)==str_num :
-        #     # return render(request, 'jobs.html',context)
-        #     return HttpResponse("<h4>YOUR APPLICATION HAS BEEN SUBMITED SUCCESSFULLY</h4>")
-        # else:
-        #     return HttpResponse("<h4>Error captha</h4>") 
-    # if verify:
-    #     return HttpResponse('<script>alert("sucess");</script>')
-    # else:
-    #     return HttpResponse('<script>alert("not sucess");</script>') 
-    context = {'name':name} 
-    return redirect('/careers') 
+
 
         
 def jobs(request):
@@ -106,11 +73,6 @@ def jobs(request):
 #    return render(request,'jobs_details.html',context=context)
 
 
-def jobs_details(request,id):
-   
-    job_list_1=get_object_or_404(Job,pk=id)
-    data = {'jobs_1':job_list_1}    
-    return render(request,'jobs_details.html',data)
     
 
 def jobs_filter(request):
@@ -131,3 +93,66 @@ def jobs_filter(request):
 # def jobs_filter(request):
 #     f = JobFilter(request.GET, queryset=Job.objects.all())
 #     return render(request, 'jobs.html', {'filter': f})
+
+
+def jobs_details(request,id):
+   
+    job_list_1=get_object_or_404(Job,pk=id)
+    data = {'jobs_1':job_list_1}    
+    return render(request,'jobs_details.html',data)
+
+def apply_submit(request, id):
+    print(id)
+    job_list = get_object_or_404(Job, pk=id)
+    req_id=job_list.Req_Id
+    print(req_id)
+    role=job_list.role
+    print(role)
+    dzero = int(0)
+    dnone = 'None'
+    
+    if request.method == 'POST':
+        name= request.POST['Name']
+       
+        email_id= request.POST.get('Email_id','none')
+
+        years_of_experience=request.POST.get('Years_of_Experience',dzero)
+        if years_of_experience=='':
+            years_of_experience=0      
+
+        linkedin_profile= request.POST.get('Linkedin_Profile','none')
+
+        expected_hourly_rate=request.POST.get('Expected_hourly_rate',dzero)
+        if expected_hourly_rate=='':
+            expected_hourly_rate=0
+       
+        resume= request.FILES['Resume']
+        
+        # clientkey=request.POST['g-recaptcha-response']
+        # secretkey='6LeQsNsaAAAAAH4ckMnBLNWMWWnBNbWMAGqJvERR'
+        # capthchaData={
+        #     'secret':secretkey,
+        #     'response':clientkey,
+        #     }
+        # r=requests.post( 'https://www.google.com/recaptcha/api/siteverify', data=capthchaData)
+        # response=json.loads(r.text)
+        # verify=response['success']
+        fs=FileSystemStorage()
+        fs.save(resume.name, resume)
+        Cand = Candidate(Name=name,Email_id=email_id,Years_of_Experience=years_of_experience,Linkedin_Profile=linkedin_profile,
+                    Expected_hourly_rate=expected_hourly_rate, Resume= resume,role=role ,req_id=req_id)  
+        print(Cand)
+        Cand.save()
+       
+    
+        # if str(cap)==str_num :
+        #     # return render(request, 'jobs.html',context)
+        #     return HttpResponse("<h4>YOUR APPLICATION HAS BEEN SUBMITED SUCCESSFULLY</h4>")
+        # else:
+        #     return HttpResponse("<h4>Error captha</h4>") 
+    # if verify:
+    #     return HttpResponse('<script>alert("sucess");</script>')
+    # else:
+    #     return HttpResponse('<script>alert("not sucess");</script>') 
+    
+        return redirect('jobs') 
